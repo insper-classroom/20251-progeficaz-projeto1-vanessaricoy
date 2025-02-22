@@ -1,0 +1,90 @@
+Get-it - Projeto de Bloco de Notas
+
+Este é um projeto simples de bloco de notas chamado Get-it, inspirado no conceito de post-its digitais. A aplicação permite criar, editar e excluir notas de forma dinâmica, utilizando Python (Flask) para o backend e HTML, CSS e JavaScript para o frontend.
+
+📌 Funcionalidades
+
+Criar novas anotações com título e conteúdo.
+
+Exibir notas como "post-its" coloridos na tela.
+
+Editar título e conteúdo das notas.
+
+Excluir anotações.
+
+Interface responsiva e estilizada.
+
+🛠️ Tecnologias Utilizadas
+
+Backend: Flask + SQLite
+
+Frontend: HTML, CSS e JavaScript
+
+Estilização: CSS personalizado
+
+Banco de Dados: SQLite para armazenamento das notas
+
+📂 Estrutura do Projeto
+
+📂 projeto-get-it
+ ├── 📂 static  # Arquivos CSS, imagens e scripts JavaScript
+ │   ├── 📂 img  # Contém a logo do projeto
+ │   ├── 📂 css  # Contém o arquivo de estilização
+ │   ├── 📂 js   # Contém os scripts da interface
+ │
+ ├── 📂 templates  # Arquivos HTML
+ │   ├── index.html  # Página principal
+ │   ├── editar.html # Página de edição de notas
+ │
+ ├── app.py  # Arquivo principal que gerencia as rotas do Flask
+ ├── database.py  # Arquivo que gerencia a conexão e manipulação do banco de dados SQLite
+ ├── README.md  # Documentação do projeto
+
+🎨 Estilização e Inspiração
+
+Para a parte de HTML e CSS, utilizei o ChatGPT para aprender e corrigir algumas funcionalidades. Além disso, me baseei no curso:
+
+🔗 Udemy - HTML e CSS: Do Básico ao Avançado Focado na Prática
+
+E também assisti ao vídeo do YouTube para reforçar conceitos de design:
+
+🎥 Vídeo: Como criar um site moderno com HTML e CSS
+
+🚀 Como Rodar o Projeto
+
+Clone este repositório:
+
+git clone https://github.com/seu-usuario/projeto-get-it.git
+
+Entre no diretório do projeto:
+
+cd projeto-get-it
+
+Crie um ambiente virtual e ative-o:
+
+python -m venv venv
+source venv/bin/activate  # No Windows use venv\Scripts\activate
+
+Instale as dependências:
+
+pip install -r requirements.txt
+
+Execute o servidor:
+
+python app.py
+
+Acesse no navegador:
+
+http://127.0.0.1:5000
+
+📌 Próximos Passos
+
+Adicionar funcionalidade de salvar imagens nas notas
+
+Melhorar a interface com animações em CSS
+
+Implementar autenticação de usuário
+
+📝 Observação
+
+Este projeto foi feito como parte de um exercício de aprendizado, utilizando referências externas para aprimorar habilidades em desenvolvimento web e banco de dados. O código contém comentários escritos por Vanessa Castro Pitangui do curso de Ciência da Computação do Insper para facilitar a compreensão.

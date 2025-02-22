@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    <h1>Minhas Notas</h1>
+
+    <!-- Formulário para criar uma nova nota -->
+    <form class="formulario-criacao" action="{{ url_for('rotas.adicionar') }}" method="post">
+        <input type="text" name="titulo" placeholder="Título" required>
+        <input type="text" name="detalhes" placeholder="Detalhes" required>
+        <button type="submit">Criar Nota</button>
+    </form>
+
+    <!-- Notas salvas -->
+    <div class="quadro-notas">
+        {% for nota in notas %}
+            <div class="nota">
+                <div>
+                    <h3>{{ nota[1] }}</h3>
+                    <p>{{ nota[2] }}</p>
+                </div>
+                <div class="botoes-nota">
+                    <button class="botao botao-editar" onclick="abrirModalEdicao({{ nota[0] }}, '{{ nota[1] }}', '{{ nota[2] }}')">Editar</button>
+                    <form action="{{ url_for('rotas.apagar', id=nota[0]) }}" method="post">
+                        <button class="botao botao-apagar">Apagar</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Modal de edição -->
+    <div id="modal-edicao" class="modal">
+        <div class="modal-conteudo">
+            <span class="fechar" onclick="fecharModal()">&times;</span>
+            <h2>Editar Nota</h2>
+            <label for="novo-titulo">Título:</label>
+            <input type="text" id="novo-titulo">
+            <label for="novos-detalhes">Detalhes:</label>
+            <textarea id="novos-detalhes"></textarea>
+            <button onclick="salvarEdicao()">Salvar</button>
+        </div>
+    </div>
+
+    <script>
+        let notaIdAtual = null;
+
+        function abrirModalEdicao(id, tituloAtual, detalhesAtuais) {
+            notaIdAtual = id;
+            document.getElementById("novo-titulo").value = tituloAtual;
+            document.getElementById("novos-detalhes").value = detalhesAtuais;
+            document.getElementById("modal-edicao").style.display = "block";
+        }
+
+        function fecharModal() {
+            document.getElementById("modal-edicao").style.display = "none";
+        }
+
+        function salvarEdicao() {
+            let novoTitulo = document.getElementById("novo-titulo").value;
+            let novosDetalhes = document.getElementById("novos-detalhes").value;
+
+            fetch('/editar/' + notaIdAtual, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'titulo=' + encodeURIComponent(novoTitulo) + '&detalhes=' + encodeURIComponent(novosDetalhes)
+            }).then(() => {
+                fecharModal();
+                location.reload();
+            });
+        }
+    </script>
+{% endblock %}
